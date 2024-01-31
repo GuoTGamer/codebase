@@ -1,0 +1,26 @@
+header {
+    height: 10%;
+    background-color: white;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+}
+
+.codebase {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+}
