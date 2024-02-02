@@ -15,12 +15,6 @@ $driehoek = 0;
 
 $figuur = array("vierhoek", "cirkel", "driehoek");
 
-$vierhoek_opp = $lengte * $breedte;
-$vierhoek_omtr = 2 * ($lengte + $breedte);
-$cirkel_opp = pi() * $straal * $straal;
-$cirkel_omtr = 2 * pi() * $straal;
-$driehoek = ($basis * $hoogte) / 2;
-
 
 ?>
 <!DOCTYPE html>
@@ -52,26 +46,26 @@ if (isset($_POST['submit']) && isset($_POST['figuur'])) {
     $figuur = $_POST["figuur"];
     switch($figuur) {
         case 'vierhoek':
-            echo '<form method="post" action="">
-            <p>Lengte</p>
-            <input type="number" name="lengte" placeholder="lengte" value="' . $lengte . '" required /><br/>
-            <p>Breedte</p>
+            echo '<form method="post" action="./figuur/vierhoek.php">
+            <label>Lengte in cm</label>
+            <input type="number" name="lengte" placeholder="lengte" value="' . $lengte . '" required /><br/><br/>
+            <label>Breedte in cm</label>
             <input type="number" name="breedte" placeholder="breedte" value="' . $breedte . '" required /><br/>
             <input type="submit" name="submit2" value="berekenen" />
             </form>';
             break;
         case 'cirkel':
-            echo '<form method="post" action="">
-            <p>Diameter</p>
+            echo '<form method="post" action="./figuur/cirkel.php">
+            <label>Diameter in cm</label>
             <input type="number" name="diameter" placeholder="diameter" value="' . $diameter . '" required /><br/>
             <input type="submit" name="submit2" value="berekenen" />
             </form>';
             break;
         case 'driehoek':
-            echo '<form method="post" action="">
-            <p>Basis</p>
-            <input type="number" name="basis" placeholder="basis" value="' . $basis . '" required /><br/>
-            <p>Hoogte</p>
+            echo '<form method="post" action="./figuur/driehoek.php">
+            <label>Basis in cm</label>
+            <input type="number" name="basis" placeholder="basis" value="' . $basis . '" required /><br/><br/>
+            <label>Hoogte in cm</label>
             <input type="number" name="hoogte" placeholder="hoogte" value="' . $hoogte . '" required /><br/>
             <input type="submit" name="submit2" value="berekenen" />
             </form>';
@@ -80,35 +74,6 @@ if (isset($_POST['submit']) && isset($_POST['figuur'])) {
             echo 'Selecteer alstublieft een figuur.';
     }
 }
-
-if (isset($_POST['submit2']) && isset($_POST['figuur'])) {
-    $figuur = $_POST["figuur"];
-    switch ($figuur) {
-        case 'vierhoek':
-            $lengte = $_POST["lengte"];
-            $breedte = $_POST["breedte"];
-            $vierhoek_opp = $lengte * $breedte;
-            $vierhoek_omtr = 2 * ($lengte + $breedte);
-            break;
-        case 'cirkel':
-            $diameter = $_POST["diameter"];
-            $straal = $diameter / 2;
-            $cirkel_opp = pi() * $straal * $straal;
-            $cirkel_omtr = 2 * pi() * $straal;
-            break;
-        case 'driehoek':
-            $basis = $_POST["basis"];
-            $hoogte = $_POST["hoogte"];
-            $driehoek = ($basis * $hoogte) / 2;
-            break;
-    }
-}
-
-echo "Vierhoek Oppervlakte " . number_format($vierhoek_opp, 2) . " CM<br />";
-echo "Vierhoek Omtrek " . number_format($vierhoek_omtr, 2) . " CM<br />";
-echo "Cirkel Oppervlakte " . number_format($cirkel_opp, 2) . " CM<br />";
-echo "Cirkel Omtrek " . number_format($cirkel_omtr, 2) . " CM<br />";
-echo "Driehoek Oppervlakte " . number_format($driehoek, 2) . " CM<br />";
 
 ?>
 
