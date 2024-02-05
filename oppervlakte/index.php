@@ -27,7 +27,7 @@ $figuur = array("vierhoek", "cirkel", "driehoek");
 </head>
 
 <body>
-
+<div class="box">
     <form method="post" action="">
     figuur:
     <select name="figuur" required>
@@ -46,7 +46,8 @@ if (isset($_POST['submit']) && isset($_POST['figuur'])) {
     $figuur = $_POST["figuur"];
     switch($figuur) {
         case 'vierhoek':
-            echo '<form class="form2" method="post" action="./figuur/vierhoek.php">
+            echo '
+            <form method="post" action="./figuur/vierhoek.php">
             <label>Lengte in cm</label>
             <input type="number" name="lengte" placeholder="lengte" value="' . $lengte . '" required /><br/><br/>
             <label>Breedte in cm</label>
@@ -55,14 +56,16 @@ if (isset($_POST['submit']) && isset($_POST['figuur'])) {
             </form>';
             break;
         case 'cirkel':
-            echo '<form class="form2" method="post" action="./figuur/cirkel.php">
+            echo '
+            <form method="post" action="./figuur/cirkel.php">
             <label>Diameter in cm</label>
             <input type="number" name="diameter" placeholder="diameter" value="' . $diameter . '" required /><br/>
             <input type="submit" name="submit2" value="berekenen" />
             </form>';
             break;
         case 'driehoek':
-            echo '<form class="form2" method="post" action="./figuur/driehoek.php">
+            echo '
+            <form method="post" action="./figuur/driehoek.php">
             <label>Basis in cm</label>
             <input type="number" name="basis" placeholder="basis" value="' . $basis . '" required /><br/><br/>
             <label>Hoogte in cm</label>
@@ -74,6 +77,6 @@ if (isset($_POST['submit']) && isset($_POST['figuur'])) {
 }
 
 ?>
-
+</div>
 </body>
 </html>
