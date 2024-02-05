@@ -3,8 +3,13 @@ session_start();
 
 $basis = isset($_POST['basis']) ? $_POST['basis'] : 0;
 $hoogte = isset($_POST['hoogte']) ? $_POST['hoogte'] : 0;
-$driehoek = 0;
-$driehoek = ($basis * $hoogte) / 2;
+$zijden1 = isset($_POST['zijden1']) ? $_POST['zijden1'] : 0;
+$zijden2 = isset($_POST['zijden2']) ? $_POST['zijden2'] : 0;
+$zijden3 = isset($_POST['zijden3']) ? $_POST['zijden3'] : 0;
+$driehoek_opp = 0;
+$driehoek_omtr = 0;
+$driehoek_opp = ($basis * $hoogte) / 2;
+$driehoek_omtr = $zijden1 + $zijden2 + $zijden3;
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +29,7 @@ $driehoek = ($basis * $hoogte) / 2;
     <h1>Uitkomst Driehoek</h1>
 <?php
 echo "Oppervlakte : " . number_format($driehoek, 2) . " CM<br />";
+echo "Omtrek : " . number_format($driehoek_omtr, 2) . " CM<br />";
 ?>
 
 <br />

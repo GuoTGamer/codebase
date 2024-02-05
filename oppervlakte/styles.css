@@ -48,3 +48,15 @@ select {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+.driehoek {
+    display: flex;
+}
+
+.opp {
+    flex: 1;
+}
+
+.omtr {
+    flex: 1;
+}

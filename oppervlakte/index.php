@@ -6,12 +6,9 @@ $breedte = isset($_POST['breedte']) ? $_POST['breedte'] : 0;
 $diameter = isset($_POST['diameter']) ? $_POST['diameter'] : 0;
 $basis = isset($_POST['basis']) ? $_POST['basis'] : 0;
 $hoogte = isset($_POST['hoogte']) ? $_POST['hoogte'] : 0;
-$straal = $diameter / 2;
-$vierhoek_opp = 0;
-$vierhoek_omtr = 0;
-$cirkel_opp = 0;
-$cirkel_omtr = 0;
-$driehoek = 0;
+$zijden1 = isset($_POST['zijden1']) ? $_POST['zijden1'] : 0;
+$zijden2 = isset($_POST['zijden2']) ? $_POST['zijden2'] : 0;
+$zijden3 = isset($_POST['zijden3']) ? $_POST['zijden3'] : 0;
 
 $figuur = array("vierhoek", "cirkel", "driehoek");
 
@@ -66,10 +63,24 @@ if (isset($_POST['submit']) && isset($_POST['figuur'])) {
         case 'driehoek':
             echo '
             <form method="post" action="./figuur/driehoek.php">
+            <div class="driehoek">
+            <div class="opp">
+            <label>Oppervlakte</label>
             <label>Basis in cm</label>
             <input type="number" name="basis" placeholder="basis" value="' . $basis . '" required /><br/><br/>
             <label>Hoogte in cm</label>
             <input type="number" name="hoogte" placeholder="hoogte" value="' . $hoogte . '" required /><br/>
+            </div>
+            <div class="omtr">
+            <label>Omtrek</label>
+            <label>Zijde 1 in cm</label>
+            <input type="number" name="zijden1" placeholder="zijde 1" value="' . $zijden1 . '" required /><br/><br/>
+            <label>Zijde 2 in cm</label>
+            <input type="number" name="zijden2" placeholder="zijde 2" value="' . $zijden2 . '" required /><br/><br/>
+            <label>Zijde 3 in cm</label>
+            <input type="number" name="zijden3" placeholder="zijde 3" value="' . $zijden3 . '" required /><br/>
+            </div>
+            </div>
             <input type="submit" name="submit2" value="berekenen" />
             </form>';
             break;
