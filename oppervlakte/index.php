@@ -49,7 +49,7 @@ if (isset($_POST['submit']) && isset($_POST['figuur'])) {
             <input type="number" name="lengte" placeholder="lengte" value="' . $lengte . '" required /><br/><br/>
             <label>Breedte in cm</label>
             <input type="number" name="breedte" placeholder="breedte" value="' . $breedte . '" required /><br/>
-            <input type="submit" name="submit2" value="berekenen" />
+            <input type="submit" name="submit" value="berekenen" />
             </form>';
             break;
         case 'cirkel':
@@ -57,7 +57,7 @@ if (isset($_POST['submit']) && isset($_POST['figuur'])) {
             <form method="post" action="./figuur/cirkel.php">
             <label>Diameter in cm</label>
             <input type="number" name="diameter" placeholder="diameter" value="' . $diameter . '" required /><br/>
-            <input type="submit" name="submit2" value="berekenen" />
+            <input type="submit" name="submit" value="berekenen" />
             </form>';
             break;
         case 'driehoek':
@@ -81,7 +81,7 @@ if (isset($_POST['submit']) && isset($_POST['figuur'])) {
             <input type="number" name="zijden3" placeholder="zijde 3" value="' . $zijden3 . '" required /><br/>
             </div>
             </div>
-            <input type="submit" name="submit2" value="berekenen" />
+            <input type="submit" name="submit" value="berekenen" />
             </form>';
             break;
     }
