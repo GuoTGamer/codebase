@@ -1,18 +1,5 @@
 <?php
 session_start();
-
-$lengte = isset($_POST['lengte']) ? $_POST['lengte'] : 0;
-$breedte = isset($_POST['breedte']) ? $_POST['breedte'] : 0;
-$diameter = isset($_POST['diameter']) ? $_POST['diameter'] : 0;
-$basis = isset($_POST['basis']) ? $_POST['basis'] : 0;
-$hoogte = isset($_POST['hoogte']) ? $_POST['hoogte'] : 0;
-$zijden1 = isset($_POST['zijden1']) ? $_POST['zijden1'] : 0;
-$zijden2 = isset($_POST['zijden2']) ? $_POST['zijden2'] : 0;
-$zijden3 = isset($_POST['zijden3']) ? $_POST['zijden3'] : 0;
-
-$figuur = array("vierhoek", "cirkel", "driehoek");
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

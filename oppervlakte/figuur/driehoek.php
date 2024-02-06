@@ -28,7 +28,7 @@ $driehoek_omtr = $zijden1 + $zijden2 + $zijden3;
 <form method="post" action="../index.php">
     <h1>Uitkomst Driehoek</h1>
 <?php
-echo "Oppervlakte : " . number_format($driehoek, 2) . " CM<br />";
+echo "Oppervlakte : " . number_format($driehoek_opp, 2) . " CM<br />";
 echo "Omtrek : " . number_format($driehoek_omtr, 2) . " CM<br />";
 ?>
 
