@@ -2,16 +2,17 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $iban1 = isset($_POST['IBAN_1']) ? $_POST['IBAN_!'] : 0;
-    $iban2 = isset($_POST['IBAN_2']) ? $_POST['IBAN_2'] : 0;
-    $iban3 = isset($_POST['IBAN_3']) ? $_POST['IBAN_3'] : 0;
-    $iban4 = isset($_POST['IBAN_4']) ? $_POST['IBAN_4'] : 0;
-    $iban5 = isset($_POST['IBAN_5']) ? $_POST['IBAN_5'] : 0;
-    $iban6 = isset($_POST['IBAN_6']) ? $_POST['IBAN_6'] : 0;
-    $iban7 = isset($_POST['IBAN_7']) ? $_POST['IBAN_7'] : 0;
-    $iban8 = isset($_POST['IBAN_8']) ? $_POST['IBAN_8'] : 0;
-    $iban9 = isset($_POST['IBAN_9']) ? $_POST['IBAN_9'] : 0;
-    }
+$iban1 = isset($_POST['iban1']) ? $_POST['iban1'] : 0;
+$iban2 = isset($_POST['iban2']) ? $_POST['iban2'] : 0;
+$iban3 = isset($_POST['iban3']) ? $_POST['iban3'] : 0;
+$iban4 = isset($_POST['iban4']) ? $_POST['iban4'] : 0;
+$iban5 = isset($_POST['iban5']) ? $_POST['iban5'] : 0;
+$iban6 = isset($_POST['iban6']) ? $_POST['iban6'] : 0;
+$iban7 = isset($_POST['iban7']) ? $_POST['iban7'] : 0;
+$iban8 = isset($_POST['iban8']) ? $_POST['iban8'] : 0;
+$iban9 = isset($_POST['iban9']) ? $_POST['iban9'] : 0;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,15 +25,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 <?php
-echo $iban1;
-echo $iban2;
-echo $iban3;
-echo $iban4;
-echo $iban5;
-echo $iban6;
-echo $iban7;
-echo $iban8;
-echo $iban9;
+
+echo $iban1 . ' ';
+echo $iban2 . ' ';
+echo $iban3 . ' ';
+echo $iban4 . ' ';
+echo $iban5 . ' ';
+echo $iban6 . ' ';
+echo $iban7 . ' ';
+echo $iban8 . ' ';
+echo $iban9 . ' ';
+echo '<br>';
+
+$som1 = $iban1 * 9;
+$som2 = $iban2 * 8;
+$som3 = $iban3 * 7;
+$som4 = $iban4 * 6;
+$som5 = $iban5 * 5;
+$som6 = $iban6 * 4;
+$som7 = $iban7 * 3;
+$som8 = $iban8 * 2;
+$som9 = $iban9 * 1;
+
+echo $som1 . ' ';
+echo $som2 . ' ';
+echo $som3 . ' ';
+echo $som4 . ' ';
+echo $som5 . ' ';
+echo $som6 . ' ';
+echo $som7 . ' ';
+echo $som8 . ' ';
+echo $som9 . ' ';
+echo '<br>';
+
+$ibansom1 = $som1 + $som2 + $som3 + $som4 + $som5 + $som6 + $som7 + $som8 + $som9;
+$ibansom2 = $ibansom1 / 11;
+
+echo $ibansom1;
+echo '<br>';
+echo $ibansom2;
+echo '<br>';
+
+if (is_int($ibansom2)) {
+    echo 'Dit is een geldig IBAN nummer';
+} else {
+    echo 'Dit is geen geldig IBAN nummer';
+}
+
 ?>
 </body>
 </html>

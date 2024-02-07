@@ -1,17 +1,28 @@
 <?php
 session_start();
 
+$iban_values = array(
+    'iban1' => '',
+    'iban2' => '',
+    'iban3' => '',
+    'iban4' => '',
+    'iban5' => '',
+    'iban6' => '',
+    'iban7' => '',
+    'iban8' => '',
+    'iban9' => ''
+);
+
+// Als het formulier is verzonden, sla de ingevoerde waarden op in de sessie
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $iban1 = isset($_POST['IBAN_1']) ? $_POST['IBAN_!'] : 0;
-    $iban2 = isset($_POST['IBAN_2']) ? $_POST['IBAN_2'] : 0;
-    $iban3 = isset($_POST['IBAN_3']) ? $_POST['IBAN_3'] : 0;
-    $iban4 = isset($_POST['IBAN_4']) ? $_POST['IBAN_4'] : 0;
-    $iban5 = isset($_POST['IBAN_5']) ? $_POST['IBAN_5'] : 0;
-    $iban6 = isset($_POST['IBAN_6']) ? $_POST['IBAN_6'] : 0;
-    $iban7 = isset($_POST['IBAN_7']) ? $_POST['IBAN_7'] : 0;
-    $iban8 = isset($_POST['IBAN_8']) ? $_POST['IBAN_8'] : 0;
-    $iban9 = isset($_POST['IBAN_9']) ? $_POST['IBAN_9'] : 0;
+    foreach ($_POST as $name => $value) {
+        if (array_key_exists($name, $iban_values)) {
+            $iban_values[$name] = $value;
+        }
     }
+    $_SESSION['iban_values'] = $iban_values;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,22 +34,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-<?php
-echo '
-<form method="post" action="./confirm.php">
+<form method="post" class="back">
     <div class="input-row">
-        <input type="text" name="iban_1" placeholder="1" value="' . $iban1 . '" required maxlength="1">
-        <input type="text" name="iban_2" placeholder="2" value="' . $iban2 . '" required maxlength="1">
-        <input type="text" name="iban_3" placeholder="3" value="' . $iban3 . '" required maxlength="1">
-        <input type="text" name="iban_4" placeholder="4" value="' . $iban4 . '" required maxlength="1">
-        <input type="text" name="iban_5" placeholder="5" value="' . $iban5 . '" required maxlength="1">
-        <input type="text" name="iban_6" placeholder="6" value="' . $iban6 . '" required maxlength="1">
-        <input type="text" name="iban_7" placeholder="7" value="' . $iban7 . '" required maxlength="1">
-        <input type="text" name="iban_8" placeholder="8" value="' . $iban8 . '" required maxlength="1">
-        <input type="text" name="iban_9" placeholder="9" value="' . $iban9 . '" required maxlength="1">
+        <?php
+        foreach ($iban_values as $name => $value) {
+            echo '<input type="text" name="' . $name . '" placeholder="' . substr($name, -1) . '" value="' . $value . '" required maxlength="1">';
+        }      
+        ?>
     </div>
     <input type="submit" value="Check IBAN">
-</form>'
+</form>
+<?php   
+// Bereken de som van de vermenigvuldigde waarden
+
+$som1 = $iban_values['iban1'] * 9;
+$som2 = $iban_values['iban2'] * 8;
+$som3 = $iban_values['iban3'] * 7;
+$som4 = $iban_values['iban4'] * 6;
+$som5 = $iban_values['iban5'] * 5;
+$som6 = $iban_values['iban6'] * 4;
+$som7 = $iban_values['iban7'] * 3;
+$som8 = $iban_values['iban8'] * 2;
+$som9 = $iban_values['iban9'] * 1;
+$confirm = ($som1 + $som2 + $som3 + $som4 + $som5 + $som6 + $som7 + $som8 + $som9) / 11;
+
+if (is_int($confirm)) {
+    echo '<style>.back {background-color: green;} .input-row {background-color: green;}</style>';
+} else {
+    echo '<style>.back {background-color: red;} .input-row {background-color: red;}</style>';
+}
 ?>
 </body>
 </html>
