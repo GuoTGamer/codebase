@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,15 +38,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="input-row">
         <?php
         foreach ($iban_values as $name => $value) {
-            echo '<input type="text" name="' . $name . '" placeholder="' . substr($name, -1) . '" value="' . $value . '" required maxlength="1">';
+            echo '<input class="number" type="text" name="' . $name . '" placeholder="' . substr($name, -1) . '" value="' . $value . '" required maxlength="1" pattern="[1-9]" title="Alleen cijfers van 1 tot 9 zijn toegestaan">';
         }      
         ?>
     </div>
     <input type="submit" value="Check IBAN">
 </form>
 <?php   
-// Bereken de som van de vermenigvuldigde waarden
 
+// Bereken de som van de vermenigvuldigde waarden
 $som1 = $iban_values['iban1'] * 9;
 $som2 = $iban_values['iban2'] * 8;
 $som3 = $iban_values['iban3'] * 7;
@@ -58,11 +58,24 @@ $som8 = $iban_values['iban8'] * 2;
 $som9 = $iban_values['iban9'] * 1;
 $confirm = ($som1 + $som2 + $som3 + $som4 + $som5 + $som6 + $som7 + $som8 + $som9) / 11;
 
-if (is_int($confirm)) {
-    echo '<style>.back {background-color: green;} .input-row {background-color: green;}</style>';
-} else {
-    echo '<style>.back {background-color: red;} .input-row {background-color: red;}</style>';
+
+// Kijkt of er een 0 in zit
+$mag = true;
+foreach ($iban_values as $name => $value) {
+    if ($value == 0) {
+        $mag = false;
+    } else {
+    }
 }
+
+// Laat zien of het een geldig IBAN is
+if ($mag == true & is_int($confirm)) {
+        echo '<style>.back {background-color: green;} .input-row {background-color: green;} a {background-color: green;}</style>';
+        echo '<a>Deze IBAN is geldig</a>';
+    } else {
+        echo '<style>.back {background-color: red;} .input-row {background-color: red;} a {background-color: red;}</style>';
+        echo '<a>Deze IBAN is niet geldig</a>';
+    }
 ?>
 </body>
 </html>
