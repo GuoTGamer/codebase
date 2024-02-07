@@ -9,22 +9,30 @@
 <header>
     <h1>Codebase Opdrachten</h1>
 </header>
-<ul class="codebase">
-    <li>
-        <a class="title" href="./oppervlakte/index.php">Oppervlakte & Omtrek berekenen</a>
-        <br><br>
-        <a>Oppervlakte berekening:</a>
-        <ul>
-            <li>Vierhoek</li>
-            <li>Cirkel</li>
-            <li>Driehoek</li>
-        </ul>
-        <a>Omtrek berekening:</a>
-        <ul>
-            <li>Vierhoek</li>
-            <li>Driehoek</li>
 
-    </li>
-</ul>
+<h1>Codebase S</h1>
+
+<div class="container">
+
+    <div class="opdracht">
+        <a class="kop" href="./oppervlakte">Oppervlakte & Omtrekt Berekenen</a>
+        <a class="tekst">In deze opdracht heb ik een website gemaakt waarin je de oppervlakte & omtrek berekent word van een: Cirkel, Vierkant, Rechthoek & Driehoek.</a>
+    </div>
+</div>
+
+<h1>Codebase M</h1>
+
+<div class="container">
+
+    <div class="opdracht">
+        <a class="kop" href="./elfproef">Elfproef</a>
+        <a class="tekst">In deze opdracht heb ik een website gemaakt waarin gekeken word of het ingevoerde IBAN geldig is.</a>
+    </div>
+
+    <div class="opdracht">
+        <a class="kop" href="./lotto">Lotto</a>
+        <a class="tekst">In deze opdracht heb ik een website gemaakt waarin je de lotto getallen kan invoeren en kijken of je gewonnen hebt.</a>
+    </div>
+</div>
 
 </html>
