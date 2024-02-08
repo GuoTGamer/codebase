@@ -75,6 +75,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 echo '<a>Uw lotnummer(s): ' . $lot_values['lot1'] . ' ' . $lot_values['lot2'] . ' ' . $lot_values['lot3'] . ' ' . $lot_values['lot4'] . ' ' . $lot_values['lot5'] . ' ' . $lot_values['lot6']. '</a>';
 echo '<a>Trekking: ' . $trekking_values['trekking1'] . ' ' . $trekking_values['trekking2'] . ' ' . $trekking_values['trekking3'] . ' ' . $trekking_values['trekking4'] . ' ' . $trekking_values['trekking5'] . ' ' . $trekking_values['trekking6']. '</a>';
 
+// if ($lot_values['lot1'] == $trekking_values['trekking1']) {
+//     $nr1 = 1;
+// } else {
+//     $nr1 = 0;
+// }
 
 foreach ($controle_values as $name => $value) {
     $lot_key = 'lot' . substr($name, 2);
@@ -87,6 +92,8 @@ foreach ($controle_values as $name => $value) {
     }
 }
 
+
+echo '<a> ' . $controle_values['nr1'] . ' ' . $controle_values['nr2'] . ' ' . $controle_values['nr3'] . ' ' . $controle_values['nr4'] . ' ' . $controle_values['nr5'] . ' ' . $controle_values['nr6']. '</a>';
 $trekking = $controle_values['nr1'] + $controle_values['nr2'] + $controle_values['nr3'] + $controle_values['nr4'] + $controle_values['nr5'] + $controle_values['nr6'];
 
 if ($trekking == 3) {
