@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="input-row">
         <?php
         foreach ($iban_values as $name => $value) {
-            echo '<input class="number" type="text" name="' . $name . '" placeholder="' . substr($name, -1) . '" value="' . $value . '" required maxlength="1" pattern="[1-9]" title="Alleen cijfers van 1 tot 9 zijn toegestaan">';
+            echo '<input class="number" type="text" name="' . $name . '" placeholder="' . substr($name, -1) . '" value="' . $value . '" required maxlength="1" pattern="[0-9]" title="Alleen cijfers van 1 tot 9 zijn toegestaan">';
         }      
         ?>
     </div>
@@ -46,30 +46,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </form>
 <?php   
 
-// Bereken de som van de vermenigvuldigde waarden
-$som1 = $iban_values['iban1'] * 9;
-$som2 = $iban_values['iban2'] * 8;
-$som3 = $iban_values['iban3'] * 7;
-$som4 = $iban_values['iban4'] * 6;
-$som5 = $iban_values['iban5'] * 5;
-$som6 = $iban_values['iban6'] * 4;
-$som7 = $iban_values['iban7'] * 3;
-$som8 = $iban_values['iban8'] * 2;
-$som9 = $iban_values['iban9'] * 1;
-$confirm = ($som1 + $som2 + $som3 + $som4 + $som5 + $som6 + $som7 + $som8 + $som9) / 11;
-
-
-// Kijkt of er een 0 in zit
-$mag = true;
-foreach ($iban_values as $name => $value) {
-    if ($value == 0) {
-        $mag = false;
-    } else {
-    }
+$confirm = 0;
+echo $confirm;
+echo '<br>';
+for ($i = 10; $i > 0; $i--) {
+    $confirm += $iban_values[$name] * $i;
 }
 
+echo $confirm;
+$confirm = $confirm / 11;
+echo '<br>';
+echo $confirm;
+
 // Laat zien of het een geldig IBAN is
-if ($mag == true & is_int($confirm)) {
+if (is_int($confirm)) {
         echo '<style>.back {background-color: green;} .input-row {background-color: green;} a {background-color: green;}</style>';
         echo '<a>Deze IBAN is geldig</a>';
     } else {
