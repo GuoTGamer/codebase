@@ -47,16 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php   
 
 $confirm = 0;
-echo $confirm;
-echo '<br>';
-for ($i = 10; $i > 0; $i--) {
-    $confirm += $iban_values[$name] * $i;
+$teller =1;
+for ($i = 9; $i > 0; $i--) {
+    $confirm += $iban_values['iban' . $teller] * $i;
+    $teller++;
 }
 
-echo $confirm;
 $confirm = $confirm / 11;
-echo '<br>';
-echo $confirm;
 
 // Laat zien of het een geldig IBAN is
 if (is_int($confirm)) {
