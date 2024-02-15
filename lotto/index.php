@@ -27,21 +27,32 @@ $controle_values = array(
     'nr5' => '',
     'nr6' => '',
 );
-
-foreach ($trekking_values as $name => $value) {
-    $trekking_values[$name] = rand(1,42);
-}
-
 // Als het formulier is verzonden, sla de ingevoerde waarden op in de sessie
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    foreach ($_POST as $name => $value) {
-        if (array_key_exists($name, $lot_values)) {
-            $lot_values[$name] = $value;
+    $input_values = array_values($_POST);
+    
+    // Controleer op dubbele waarden in de ingediende lotnummers
+    if (count($input_values) !== count(array_unique($input_values))) {
+        echo '<p>U kunt geen dubbele getallen invoeren!</p>';
+    } else {
+        // Genereer nieuwe trekkingwaarden zolang er dubbele waarden zijn
+        do {
+            foreach ($trekking_values as $name => $value) {
+                $trekking_values[$name] = rand(1, 42);
+            }
+        } while (count(array_unique($trekking_values)) < count($trekking_values));
+        
+        // Sla de ingevoerde waarden op in de sessie
+        foreach ($_POST as $name => $value) {
+            if (array_key_exists($name, $lot_values)) {
+                $lot_values[$name] = $value;
+            }
         }
+        $_SESSION['lot_values'] = $lot_values;
     }
-    $_SESSION['lot_values'] = $lot_values;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,6 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+<!-- De prijzen -->
 <div class="win">
     <h1>Lotto</h1>
         <a>3 Juiste getallen: € 10,-</a>
@@ -60,6 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a>6 Juiste getallen: € 10.000.000,-</a>
 </div>
 
+<!-- Ingevoerde lotnummers -->
 <form method="post" class="back">
     <div class="input-row">
         <?php
@@ -75,12 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 echo '<a>Uw lotnummer(s): ' . $lot_values['lot1'] . ' ' . $lot_values['lot2'] . ' ' . $lot_values['lot3'] . ' ' . $lot_values['lot4'] . ' ' . $lot_values['lot5'] . ' ' . $lot_values['lot6']. '</a>';
 echo '<a>Trekking: ' . $trekking_values['trekking1'] . ' ' . $trekking_values['trekking2'] . ' ' . $trekking_values['trekking3'] . ' ' . $trekking_values['trekking4'] . ' ' . $trekking_values['trekking5'] . ' ' . $trekking_values['trekking6']. '</a>';
 
-// if ($lot_values['lot1'] == $trekking_values['trekking1']) {
-//     $nr1 = 1;
-// } else {
-//     $nr1 = 0;
-// }
-
+// Controleerd of de waarde het zelfde zijn
 foreach ($controle_values as $name => $value) {
     $lot_key = 'lot' . substr($name, 2);
     $trekking_key = 'trekking' . substr($name, 2);
@@ -92,8 +100,7 @@ foreach ($controle_values as $name => $value) {
     }
 }
 
-
-echo '<a> ' . $controle_values['nr1'] . ' ' . $controle_values['nr2'] . ' ' . $controle_values['nr3'] . ' ' . $controle_values['nr4'] . ' ' . $controle_values['nr5'] . ' ' . $controle_values['nr6']. '</a>';
+// Controleerd hoeveel getallen het zelfde zijn
 $trekking = $controle_values['nr1'] + $controle_values['nr2'] + $controle_values['nr3'] + $controle_values['nr4'] + $controle_values['nr5'] + $controle_values['nr6'];
 
 if ($trekking == 3) {
