@@ -16,6 +16,10 @@ body {
     margin-bottom: 220px;
 }
 
+.winst {
+    background-color: lightslategray;
+}
+
 h1 {
     text-align: center;
 }
@@ -61,7 +65,7 @@ input[type="submit"]:hover {
     background-color: #45a049;
 }
 
-a {
+a, p {
     background-color: lightslategray;
     color: white; 
     font-weight: bold;
@@ -71,3 +75,4 @@ a {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+

@@ -11,12 +11,12 @@ $lot_values = array(
 );
 
 $trekking_values = array(
-    'trekking1' => '',
-    'trekking2' => '',
-    'trekking3' => '',
-    'trekking4' => '',
-    'trekking5' => '',
-    'trekking6' => '',
+    'trekking1' => 'Nr',
+    'trekking2' => 'Nr',
+    'trekking3' => 'Nr',
+    'trekking4' => 'Nr',
+    'trekking5' => 'Nr',
+    'trekking6' => 'Nr',
 );
 
 $controle_values = array(
@@ -37,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Controleer op dubbele waarden in de ingediende lotnummers
     if (count($input_values) !== count(array_unique($input_values))) {
+        echo '<style>p {background-color: red;}</style>';
         echo '<p>U kunt geen dubbele getallen invoeren!</p>';
     } else {
         // Genereer nieuwe trekkingwaarden zolang er dubbele waarden zijn
@@ -104,7 +105,6 @@ foreach ($controle_values as $name => $value) {
         $controle_values[$name] = 0;
     }
 }
-
 echo '<a>Uw lotnummers: ' . implode(', ', $lot_values) . '</a>';
 echo '<a>De trekking: ' . implode(', ', $trekking_values) . '</a>';
 
@@ -112,15 +112,20 @@ echo '<a>De trekking: ' . implode(', ', $trekking_values) . '</a>';
 $trekking = $controle_values['nr1'] + $controle_values['nr2'] + $controle_values['nr3'] + $controle_values['nr4'] + $controle_values['nr5'] + $controle_values['nr6'];
 
 if ($trekking == 3) {
-    echo '<a>gefeliciteerd u heeft € 10,- gewonnen</a>';
+    echo '<style>p {background-color: green;}</style>';
+    echo '<p>gefeliciteerd u heeft € 10,- gewonnen</p>';
 } elseif ($trekking == 4) {
-    echo '<a>gefeliciteerd u heeft € 1000,- gewonnen</a>';
+    echo '<style>p {background-color: green;}</style>';
+    echo '<p>gefeliciteerd u heeft € 1000,- gewonnen</p>';
 } elseif ($trekking == 5) {
-    echo '<a>gefeliciteerd u heeft € 100.000,- gewonnen</a>';
+    echo '<style>p {background-color: green;}</style>';
+    echo '<p>gefeliciteerd u heeft € 100.000,- gewonnen</p>';
 } elseif ($trekking == 6) {
-    echo '<a>gefeliciteerd u heeft € 10.000.000,- gewonnen</a>';
+    echo '<style>p {background-color: green;}</style>';
+    echo '<p>gefeliciteerd u heeft € 10.000.000,- gewonnen</p>';
 } else {
-    echo '<a>Helaas u heeft Niks gewonnen</a>';
+    echo '<style>p {background-color: red;}</style>';
+    echo '<p>Helaas u heeft Niks gewonnen</p>';
 }
 ?>
 
