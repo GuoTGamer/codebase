@@ -27,9 +27,13 @@ $controle_values = array(
     'nr5' => '',
     'nr6' => '',
 );
+
 // Als het formulier is verzonden, sla de ingevoerde waarden op in de sessie
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $input_values = array_values($_POST);
+
+    // Sorteer de ingevoerde waarden in oplopende volgorde
+    sort($input_values);
     
     // Controleer op dubbele waarden in de ingediende lotnummers
     if (count($input_values) !== count(array_unique($input_values))) {
@@ -42,15 +46,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         } while (count(array_unique($trekking_values)) < count($trekking_values));
         
+        // Sorteer de trekkingwaarden in oplopende volgorde
+        asort($trekking_values);
+        
         // Sla de ingevoerde waarden op in de sessie
-        foreach ($_POST as $name => $value) {
-            if (array_key_exists($name, $lot_values)) {
-                $lot_values[$name] = $value;
-            }
+        foreach ($input_values as $index => $value) {
+            $name = 'lot' . ($index + 1); // lot1, lot2, ..., lot6
+            $lot_values[$name] = $value;
         }
         $_SESSION['lot_values'] = $lot_values;
     }
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -85,9 +93,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </form>
 <?php   
 
-echo '<a>Uw lotnummer(s): ' . $lot_values['lot1'] . ' ' . $lot_values['lot2'] . ' ' . $lot_values['lot3'] . ' ' . $lot_values['lot4'] . ' ' . $lot_values['lot5'] . ' ' . $lot_values['lot6']. '</a>';
-echo '<a>Trekking: ' . $trekking_values['trekking1'] . ' ' . $trekking_values['trekking2'] . ' ' . $trekking_values['trekking3'] . ' ' . $trekking_values['trekking4'] . ' ' . $trekking_values['trekking5'] . ' ' . $trekking_values['trekking6']. '</a>';
-
 // Controleerd of de waarde het zelfde zijn
 foreach ($controle_values as $name => $value) {
     $lot_key = 'lot' . substr($name, 2);
@@ -99,6 +104,9 @@ foreach ($controle_values as $name => $value) {
         $controle_values[$name] = 0;
     }
 }
+
+echo '<a>Uw lotnummers: ' . implode(', ', $lot_values) . '</a>';
+echo '<a>De trekking: ' . implode(', ', $trekking_values) . '</a>';
 
 // Controleerd hoeveel getallen het zelfde zijn
 $trekking = $controle_values['nr1'] + $controle_values['nr2'] + $controle_values['nr3'] + $controle_values['nr4'] + $controle_values['nr5'] + $controle_values['nr6'];
