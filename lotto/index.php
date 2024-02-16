@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+function greenbg() {
+    echo '<style>p {background-color: green;}</style>';
+}
+function redbg() {
+    echo '<style>p {background-color: red;}</style>';
+}
+
 $lot_values = array(
     'lot1' => '',
     'lot2' => '',
@@ -37,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Controleer op dubbele waarden in de ingediende lotnummers
     if (count($input_values) !== count(array_unique($input_values))) {
-        echo '<style>p {background-color: red;}</style>';
+        redbg();
         echo '<p>U kunt geen dubbele getallen invoeren!</p>';
     } else {
         // Genereer nieuwe trekkingwaarden zolang er dubbele waarden zijn
@@ -81,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a>6 Juiste getallen: € 10.000.000,-</a>
 </div>
 
-<!-- Ingevoerde lotnummers -->
+<!-- Lotnummers invoeren -->
 <form method="post" class="back">
     <div class="input-row">
         <?php
@@ -112,19 +119,19 @@ echo '<a>De trekking: ' . implode(', ', $trekking_values) . '</a>';
 $trekking = $controle_values['nr1'] + $controle_values['nr2'] + $controle_values['nr3'] + $controle_values['nr4'] + $controle_values['nr5'] + $controle_values['nr6'];
 
 if ($trekking == 3) {
-    echo '<style>p {background-color: green;}</style>';
+    greenbg();
     echo '<p>gefeliciteerd u heeft € 10,- gewonnen</p>';
 } elseif ($trekking == 4) {
-    echo '<style>p {background-color: green;}</style>';
+    greenbg();
     echo '<p>gefeliciteerd u heeft € 1000,- gewonnen</p>';
 } elseif ($trekking == 5) {
-    echo '<style>p {background-color: green;}</style>';
+    greenbg();
     echo '<p>gefeliciteerd u heeft € 100.000,- gewonnen</p>';
 } elseif ($trekking == 6) {
-    echo '<style>p {background-color: green;}</style>';
+    greenbg();
     echo '<p>gefeliciteerd u heeft € 10.000.000,- gewonnen</p>';
 } else {
-    echo '<style>p {background-color: red;}</style>';
+    redbg();
     echo '<p>Helaas u heeft Niks gewonnen</p>';
 }
 ?>
