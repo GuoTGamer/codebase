@@ -34,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+    <!-- Invoer IBAN -->
 <form method="post" class="back">
     <div class="input-row">
         <?php
@@ -46,6 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </form>
 <?php   
 
+// Confirmatie IBAN
 $confirm = 0;
 $teller =1;
 for ($i = 9; $i > 0; $i--) {
